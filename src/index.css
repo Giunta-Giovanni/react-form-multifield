@@ -1,0 +1,28 @@
+header {
+  background-color: rgba(128, 128, 128, 0.498);
+  padding: 20px;
+}
+
+main {
+  padding: 20px 0;
+  background-color: beige;
+  height: 80vh;
+}
+
+.articolo {
+  display: flex;
+  justify-content: space-between;
+  background-color: beige;
+  margin: 5px 0;
+  padding: 5px;
+  width: 95%;
+  border: 1px solid;
+  border-radius: 5px;
+
+}
+
+.avviso {
+  color: red;
+  text-align: center;
+  font-size: 20px;
+}
