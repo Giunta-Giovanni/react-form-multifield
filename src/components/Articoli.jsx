@@ -12,9 +12,56 @@ export default function Articoli() {
             {/* contenitore esterno */}
             <div className="container">
                 {/* PARTE OUTPUT FORM */}
+                <form action="#" className="form-articoli">
+                    {/* input titolo */}
+                    <input
+                        type="text"
+                        name="titolo"
+                        value={''}
+                        onChange={''}
+                        placeholder="Inserisci il titolo"
+                    />
+
+
+                    {/* input categoria */}
+                    <input
+                        type="text"
+                        name="categoria"
+                        value={''}
+                        onChange={''}
+                        placeholder="Inserisci la categoria"
+                    />
+
+
+                    {/* input contenuto */}
+                    <textarea
+                        type="textarea"
+                        name="categoria"
+                        value={''}
+                        onChange={''}
+                        placeholder="Inserisci il contenuto"
+                    />
+
+                    {/* input autore */}
+                    <input
+                        type="textarea"
+                        name="categoria"
+                        value={''}
+                        onChange={''}
+                        placeholder="Inserisci l'autore"
+                    />
+
+
+
+
+
+
+
+                </form>
+
 
                 {/* PARTE OUTPUT ARTICOLI*/}
-                <div className="row gap-3">
+                <div className="box-articoli">
 
                     {/* singolo articolo*/}
                     {dataArticoli.map(articolo => (

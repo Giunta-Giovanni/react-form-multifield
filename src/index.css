@@ -8,6 +8,13 @@ main {
   background-color: beige;
 }
 
+.form-articoli input,
+.form-articoli textarea {
+  margin: 10px auto;
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
 
 
 .autore {
@@ -15,6 +22,17 @@ main {
   text-decoration: underline;
   font-style: italic;
   font-weight: 500;
+  padding-top: 10px;
   margin: 0;
-  padding: 2px;
+}
+
+.box-articoli {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.toast {
+  margin: 10px;
 }
