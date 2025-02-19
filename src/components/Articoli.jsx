@@ -57,10 +57,19 @@ export default function Articoli() {
             }
             ]);
         // resetta il form utilizzando il preset di initialFormData
-
         setFormData(initialFormData)
+    }
 
 
+    // funzione di rimozione dei post
+    function removeArticols(id) {
+
+        // filter sull'array
+        const updateArticols = articols.filter(articol => {
+            return articol.id !== id
+        })
+
+        setArticols(updateArticols);
     }
 
 
@@ -131,6 +140,11 @@ export default function Articoli() {
 
 
                 {/* PARTE OUTPUT ARTICOLI*/}
+
+
+
+
+
                 <div className="box-articoli">
 
                     {/* singolo articolo*/}
@@ -147,7 +161,16 @@ export default function Articoli() {
                                     {articolo.categoria}
                                 </span>
                                 {/* button delete */}
-                                <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="toast"
+                                    aria-label="Close"
+                                    // onclick con funzione inserita in una callback function per prevenire attivazione automatica
+                                    onClick={() => removeArticols(articolo.id)}
+                                >
+
+                                </button>
                             </div>
 
                             {/* contenitore corpo */}
