@@ -147,11 +147,6 @@ export default function Articoli() {
                         />
                         <label htmlFor="pubblicato">Pubblicato</label>
                     </div>
-
-
-
-
-
                     <div className="box-btn">
                         <button type="submit" className="btn btn-secondary btn-lg">
                             Aggiungi Articolo
