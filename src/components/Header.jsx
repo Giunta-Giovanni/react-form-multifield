@@ -1,12 +1,9 @@
 export default function Header() {
     return (
-        <header>
-            <div className="container">
-                <h1>
-                    La Mia Lista Di Articoli
-                </h1>
+        <header className="header">
+            <div className="container text-center py-4">
+                <h1 className="title">La Mia Lista Di Articoli</h1>
             </div>
         </header>
-    )
-
+    );
 }
