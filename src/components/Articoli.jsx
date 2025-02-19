@@ -1,6 +1,6 @@
 // Esercizio
-// Ampliare l’esercizio precedente aggiungendo, nel form, il campo autore, contenuto ed un campo per una categoria.
-// Quindi ogni post ha le seguenti proprietà: id, titolo, autore, contenuto, categoria.
+// Ampliare l’esercizio precedente aggiungendo, nel form, il campo autore, contenuto ed un campo per una categoria.√
+// Quindi ogni post ha le seguenti proprietà: id, titolo, autore, contenuto, categoria.√
 
 
 // importiamo use state
@@ -18,10 +18,12 @@ const initialFormData = {
 }
 
 export default function Articoli() {
-    console.table(dataArticoli)
 
 
     // creiamo una variabile di stato che conterrà il nostro array di oggetti
+    const [articols, setArticols] = useState(dataArticoli)
+    console.table(articols)
+
     // creiamo una variabile di stato che sarà riempita dell'oggetto sopra indicato
     const [formData, setFormData] = useState(initialFormData);
 
@@ -41,10 +43,24 @@ export default function Articoli() {
     const handleSubmitForm = (e) => {
         e.preventDefault()
 
-        // creimo il nuovo oggetto 
-        const newArticol = {
-            id: Date.now
-        }
+        // inseriamo l'oggetto creato all'interno del nostro array
+        // diciamo a setArticols di prenderci il nostro array corrente
+        setArticols(currentarticols =>
+            // copia l'array corrente 
+            [...currentarticols,
+            { // aggiungi id a crescere con condizione a 0 
+                id: currentarticols.length === 0 ?
+                    1 : currentarticols[currentarticols.length - 1].id + 1,
+                // aggiungi il form inserito dall'utente
+                ...formData
+
+            }
+            ]);
+        // resetta il form utilizzando il preset di initialFormData
+
+        setFormData(initialFormData)
+
+
     }
 
 
@@ -118,7 +134,8 @@ export default function Articoli() {
                 <div className="box-articoli">
 
                     {/* singolo articolo*/}
-                    {dataArticoli.map(articolo => (
+                    {/* effettuiamo map su articols che è il nostro array dinamico */}
+                    {articols.map(articolo => (
                         <div key={articolo.id} className="toast d-block">
 
                             {/* contenitore header */}
