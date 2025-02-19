@@ -8,6 +8,16 @@ main {
   background-color: beige;
 }
 
+
+.section-articoli h2 {
+  text-align: center;
+  padding: 10px 20px;
+  border: 1px solid grey;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
 .form-articoli input,
 .form-articoli textarea {
   margin: 10px auto;
