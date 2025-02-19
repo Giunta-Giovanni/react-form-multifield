@@ -14,7 +14,8 @@ const initialFormData = {
     titolo: "",
     autore: "",
     contenuto: "",
-    categoria: ""
+    categoria: "",
+    pubblicato: false,
 }
 
 export default function Articoli() {
@@ -29,14 +30,18 @@ export default function Articoli() {
 
     // Creiamo una funzione unica per gestire l'evento onChange dei nostri campi.
     function handleFormData(event) {
+        // gestiamo il valore se è preso da checkbox (true|false) oppure da text (stringhe)
+        const value = event.target.type === "checkbox" ?
+            event.target.checked : event.target.value;
+
+
         // all'avvio della funzione richiama currentForm Data
         setFormData((currentformData) => ({
             // prendi tutto l'array 
             ...currentformData,
             // e aggiungigli
-            [event.target.name]: event.target.value,
+            [event.target.name]: value,
         }));
-
     }
 
     // Creiamo una funzione unica per gestire l'invio del form.
@@ -132,58 +137,92 @@ export default function Articoli() {
                         onChange={handleFormData}
                         placeholder="Inserisci l'autore"
                     />
+                    <div className="d-flex justify-content-center">
+                        <input
+                            name="pubblicato"
+                            checked={formData.pubblicato}
+                            onChange={handleFormData}
+                            className="mx-2 my-0"
+                            type="checkbox"
+                        />
+                        <label htmlFor="pubblicato">Pubblicato</label>
+                    </div>
 
-                    <button type="submit" className="btn btn-secondary btn-lg">
-                        Aggiungi Articolo
-                    </button>
+
+
+
+
+                    <div className="box-btn">
+                        <button type="submit" className="btn btn-secondary btn-lg">
+                            Aggiungi Articolo
+                        </button>
+                    </div>
+
                 </form>
 
 
                 {/* PARTE OUTPUT ARTICOLI*/}
+                {/* condizione di output */}
+                {articols.length === 0 ?
 
+                    // CONDIZIONE VERA
+                    <h2 className="m-3">Non ci sono Articoli</h2>
+                    // Altrimenti
+                    :
+                    // CONDIZIONE FALSA
+                    <div className="box-articoli">
 
+                        {/* singolo articolo*/}
+                        {/* effettuiamo map su articols che è il nostro array dinamico */}
+                        {articols.map(articolo => (
+                            <div key={articolo.id} className="toast d-block">
 
+                                {/* contenitore header */}
+                                <div className="toast-header">
+                                    {/* titolo */}
+                                    <strong className="me-auto">{articolo.titolo}</strong>
+                                    {/* categoria */}
+                                    <span className="badge text-bg-secondary mx-2 p-2">
+                                        {articolo.categoria}
+                                    </span>
 
+                                    {/* condizione per badge pubblicato*/}
+                                    {articolo.pubblicato ?
+                                        // se è vero badge verde
+                                        <span className="badge text-bg-success mx-2 p-2">
+                                            Pubblicato
+                                        </span>
+                                        // altrimento
+                                        :
+                                        // se è falso badge rosso
+                                        <span className="badge text-bg-danger mx-2 p-2">
+                                            Non pubblicato
+                                        </span>}
 
-                <div className="box-articoli">
+                                    {/* button delete */}
+                                    <button
+                                        type="button"
+                                        className="btn-close"
+                                        data-bs-dismiss="toast"
+                                        aria-label="Close"
+                                        // onclick con funzione inserita in una callback function per prevenire attivazione automatica
+                                        onClick={() => removeArticols(articolo.id)}
+                                    >
 
-                    {/* singolo articolo*/}
-                    {/* effettuiamo map su articols che è il nostro array dinamico */}
-                    {articols.map(articolo => (
-                        <div key={articolo.id} className="toast d-block">
+                                    </button>
+                                </div>
 
-                            {/* contenitore header */}
-                            <div className="toast-header">
-                                {/* titolo */}
-                                <strong className="me-auto">{articolo.titolo}</strong>
-                                {/* categoria */}
-                                <span className="badge text-bg-secondary mx-2 p-2">
-                                    {articolo.categoria}
-                                </span>
-                                {/* button delete */}
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="toast"
-                                    aria-label="Close"
-                                    // onclick con funzione inserita in una callback function per prevenire attivazione automatica
-                                    onClick={() => removeArticols(articolo.id)}
-                                >
-
-                                </button>
+                                {/* contenitore corpo */}
+                                <div className="toast-body">
+                                    {/* contenuto */}
+                                    <p>{articolo.contenuto}</p>
+                                    {/* autore */}
+                                    <p className="autore">{articolo.autore}</p>
+                                </div>
                             </div>
-
-                            {/* contenitore corpo */}
-                            <div className="toast-body">
-                                {/* contenuto */}
-                                <p>{articolo.contenuto}</p>
-                                {/* autore */}
-                                <p className="autore">{articolo.autore}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
+                        ))}
+                    </div>
+                }
 
 
             </div>
